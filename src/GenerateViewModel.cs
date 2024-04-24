@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Media.Imaging;
 
 namespace AIGallery
@@ -71,9 +72,14 @@ namespace AIGallery
                 }
                 catch (Exception ex)
                 {
-                    Trace.WriteLine(ex);
+                    ShowErrorDialog(ex.Message);
                 }
             }
+        }
+
+        private void ShowErrorDialog(string message)
+        {
+            MessageBox.Show(message, "Image generation failed", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
         private void InitializeProviders()
