@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34723.18
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AIGallery", "src\AIGallery.csproj", "{FE8A611E-597E-4B22-9A2A-4ADB76E27E8B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FE8A611E-597E-4B22-9A2A-4ADB76E27E8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE8A611E-597E-4B22-9A2A-4ADB76E27E8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE8A611E-597E-4B22-9A2A-4ADB76E27E8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE8A611E-597E-4B22-9A2A-4ADB76E27E8B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FFB7ECE6-8F79-4FC4-B1EF-A45A91273EFD}
+	EndGlobalSection
+EndGlobal
