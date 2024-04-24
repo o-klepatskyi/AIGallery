@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using System.Diagnostics;
+using System.Reflection.Metadata;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -11,11 +13,11 @@ using System.Windows.Shapes;
 
 namespace AIGallery
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+
     public partial class MainWindow : Window
     {
+        AppDBContext db = new AppDBContext();
+
         public MainWindow()
         {
             InitializeComponent();
