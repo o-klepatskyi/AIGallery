@@ -18,9 +18,9 @@
             </Grid.ColumnDefinitions>
             <TextBox x:Name="searchTextBox" Grid.Column="0" Margin="5" />
             <Grid Grid.Column="1">
-                <ComboBox x:Name="entityComboBox" Grid.Column="1" Margin="5" SelectionChanged="EntityComboBox_SelectionChanged"/>
+                <ComboBox x:Name="providerComboBox" Grid.Column="1" Margin="5" SelectionChanged="ProviderComboBox_SelectionChanged"/>
                 <TextBlock
-                   Visibility="{Binding SelectedItem, ElementName=entityComboBox, Converter={StaticResource NullToVisibilityConverter}}"
+                   Visibility="{Binding SelectedItem, ElementName=providerComboBox, Converter={StaticResource NullToVisibilityConverter}}"
                    IsHitTestVisible="False"
                    Text="Select provider"
                    VerticalAlignment="Center"

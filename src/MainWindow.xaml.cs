@@ -23,18 +23,18 @@ namespace AIGallery
         public MainWindow()
         {
             InitializeComponent();
-            entityComboBox.ItemsSource = ViewModel.GetProviderNames();
+            providerComboBox.ItemsSource = ViewModel.GetProviderNames();
             Loaded += MainWindow_Loaded;
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
         }
-        private void EntityComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        private void ProviderComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            if (entityComboBox.SelectedItem != null)
+            if (providerComboBox.SelectedItem != null)
             {
-                ViewModel.SetActiveProvider(entityComboBox.SelectedItem.ToString() ?? "");
+                ViewModel.SetActiveProvider(providerComboBox.SelectedItem.ToString() ?? "");
             }
         }
 
