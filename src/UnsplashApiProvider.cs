@@ -61,7 +61,12 @@ namespace AIGallery
             var imageResponse = searchResponse.Results.First();
             var rawImage = await getImage(imageResponse.ImageUrls.Raw);
             var thumbnailImage = await getImage(imageResponse.ImageUrls.Thumb);
-            return new ImageDto { ImageData=rawImage, ThumbnailData= thumbnailImage, CreatedAt = DateTime.Now, ImageProvider = Name };
+            return new ImageDto {
+                ImageData=rawImage,
+                ThumbnailData= thumbnailImage,
+                CreatedAt = DateTime.Now,
+                ImageProvider = Name
+            };
         }
     }
 }
