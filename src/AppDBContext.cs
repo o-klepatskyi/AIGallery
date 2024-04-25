@@ -19,9 +19,10 @@ namespace AIGallery
 
         public AppDBContext()
         {
-            var folder = Environment.SpecialFolder.LocalApplicationData;
-            var path = Environment.GetFolderPath(folder);
-            var dbFolder = Path.Join(path, "AIGallery");
+            var folder = Environment.CurrentDirectory;
+            var project = Directory.GetParent(folder).Parent.Parent.Parent.FullName;
+            var dbFolder = Path.Combine(project, "data");
+            Trace.WriteLine(dbFolder);
             Directory.CreateDirectory(dbFolder);
             DbPath = Path.Join(dbFolder, "aigallery.db");
             Trace.WriteLine($"DbPath: {DbPath}");
