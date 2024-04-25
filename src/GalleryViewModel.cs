@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace AIGallery
@@ -15,7 +16,6 @@ namespace AIGallery
     {
         private ObservableCollection<ImageItemViewModel> _images;
         private int _currentPageIndex;
-        private int _totalPages;
 
         static readonly int PageSize = 6;
 
@@ -27,15 +27,16 @@ namespace AIGallery
 
         public RelayCommand NextPageCommand { get; }
         public RelayCommand PrevPageCommand { get; }
+        public ICommand ViewImageCommand { get; }
 
         public GalleryViewModel()
         {
             _currentPageIndex = 0;
-            _totalPages = CalculateTotalPages();
             Images = new ObservableCollection<ImageItemViewModel>();
 
             NextPageCommand = new RelayCommand(NextPage, CanNavigateNext);
             PrevPageCommand = new RelayCommand(PreviousPage, CanNavigatePrev);
+            ViewImageCommand = new RelayCommand<ImageItemViewModel>(ViewImage);
             UpdateImages();
         }
 
@@ -47,7 +48,7 @@ namespace AIGallery
 
         private bool CanNavigateNext()
         {
-            return _currentPageIndex < _totalPages - 1;
+            return _currentPageIndex < CalculateTotalPages() - 1;
         }
 
         private void PreviousPage()
@@ -92,6 +93,30 @@ namespace AIGallery
                     Images.Add(new ImageItemViewModel(imageData.Id, imageData.ThumbnailData));
                 }
             }
+        }
+
+        private void ViewImage(ImageItemViewModel image)
+        {
+            using (var context = new AppDBContext())
+            {
+                var fullImage = context.Images.Find(image.Id);
+                var imageViewModel = new ImageViewModel(fullImage);
+                imageViewModel.ImageDeleted += OnImageDeleted;
+                var imageView = new ImageView(imageViewModel);
+                
+                var window = new Window
+                {
+                    Content = imageView,
+                    SizeToContent = SizeToContent.WidthAndHeight,
+                    WindowStartupLocation = WindowStartupLocation.CenterOwner
+                };
+                window.ShowDialog();
+            }
+        }
+
+        private void OnImageDeleted(object sender, EventArgs e)
+        {
+            UpdateImages();
         }
     }
 }

@@ -15,7 +15,11 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Image Source="{Binding Thumbnail}" Width="240" Height="250" Margin="5" />
+                    <Image Source="{Binding Thumbnail}" Width="240" Height="250" Margin="5">
+                        <Image.InputBindings>
+                            <MouseBinding Gesture="LeftClick" Command="{Binding DataContext.ViewImageCommand, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" CommandParameter="{Binding}" />
+                        </Image.InputBindings>
+                    </Image>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
