@@ -1,7 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +17,7 @@ namespace AIGallery
         private Image _image;
         public event EventHandler ImageDeleted;
         public ICommand DeleteImageCommand { get; }
+        public ICommand SaveCommand { get; }
 
         public Image CurrentImage
         {
@@ -26,6 +29,7 @@ namespace AIGallery
         {
             CurrentImage = image;
             DeleteImageCommand = new RelayCommand(DeleteImage);
+            SaveCommand = new RelayCommand(SaveImage);
         }
 
         private void DeleteImage()
@@ -51,6 +55,29 @@ namespace AIGallery
         protected virtual void OnImageDeleted()
         {
             ImageDeleted?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void SaveImage()
+        {
+            var saveFileDialog = new SaveFileDialog();
+
+            saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+            saveFileDialog.Filter = "Image files (*.png;*.jpeg;*.jpg)|*.png;*.jpeg;*.jpg|All files (*.*)|*.*";
+
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                string fileName = saveFileDialog.FileName;
+
+                try
+                {
+                    File.WriteAllBytes(fileName, _image.ImageData);
+                    MessageBox.Show("Image saved successfully.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error saving image: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
         }
     }
 }

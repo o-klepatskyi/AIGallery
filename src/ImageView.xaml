@@ -20,12 +20,14 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <TextBlock Grid.Column="0" Text="Created at:" Margin="15"/>
             <TextBlock Grid.Column="1" Text="{Binding CurrentImage.CreatedAt}" Margin="15"/>
             <TextBlock Grid.Column="2" Text="Provider:" Margin="15"/>
             <TextBlock Grid.Column="3" Text="{Binding CurrentImage.ImageProvider.Name}" Margin="15"/>
-            <Button Grid.Column="4" Content="Delete" Command="{Binding DeleteImageCommand}" VerticalAlignment="Bottom" Margin="15"/>
+            <Button Grid.Column="4" Content="Save to disk" Command="{Binding SaveCommand}" VerticalAlignment="Bottom" Margin="15"/>
+            <Button Grid.Column="5" Content="Delete" Command="{Binding DeleteImageCommand}" VerticalAlignment="Bottom" Margin="15"/>
         </Grid>
     </Grid>
 </UserControl>
