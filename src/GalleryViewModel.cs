@@ -83,7 +83,7 @@ namespace AIGallery
             using (var context = new AppDBContext())
             {
                 var imageDataList = context.Images
-                    .OrderBy(i => i.Id)
+                    .OrderByDescending(i => i.Id)
                     .Skip(PageSize * _currentPageIndex)
                     .Take(PageSize)
                     .Select(i => new { i.Id, i.ThumbnailData })
